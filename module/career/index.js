@@ -6,7 +6,8 @@ var career = {
         var data = req.body;        
         data.createdOn = new Date().toISOString();
         data.updatedOn = new Date().toISOString();
-        var insertQuery = 'INSERT into ldr.' + _tables.career +  ' ("name", "emailAddress", "phoneNumber", "dob", "gender", "role", "experience", "ctc", "address", "resume", "createdOn", "updatedOn") VALUES (' + "'" + data.name + "'" + "," + "'" + data.emailAddress + "'" + ","+ "'" + data.phoneNumber + "'" + "," + "'" + data.dob  + "'" + "," + "'" + data.gender  + "'" + "," + "'" + data.role  + "'" + "," + "'" + data.experience  + "'" + "," + "'" + data.ctc  + "'" + "," + "'" + data.address  + "'" + "," + "'" + data.resume  + "'" + "," + "'" + data.createdOn  + "'" + "," + "'" + data.updatedOn  + "')";
+        data.cv = req.file.filename;
+        var insertQuery = 'INSERT into ldr.' + _tables.career +  ' ("name", "emailAddress", "phoneNumber", "dob", "gender", "role", "experience", "ctc", "address", "resume", "createdOn", "updatedOn") VALUES (' + "'" + data.name + "'" + "," + "'" + data.emailAddress + "'" + ","+ "'" + data.phoneNumber + "'" + "," + "'" + data.dob  + "'" + "," + "'" + data.gender  + "'" + "," + "'" + data.role  + "'" + "," + "'" + data.experience  + "'" + "," + "'" + data.ctc  + "'" + "," + "'" + data.address  + "'" + "," + "'" + data.cv  + "'" + "," + "'" + data.createdOn  + "'" + "," + "'" + data.updatedOn  + "')";
         dataAccess.insert(insertQuery)
         .then((result)=> {
             return res.status(200).json({
